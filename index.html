@@ -1,31 +1,55 @@
-<!doctype HTML>
+<!DOCTYPE html>
 <html>
-<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-<body style='margin : 0px; overflow: scroll;'>
-  <a-scene embedded arjs>
-    <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
-    <a-marker-camera></a-marker-camera><a-scene embedded arjs='patternRatio: 0.5'></a-scene>
-    <a-marker type=’pattern’ url="C:\laragon\www\arscan\pattern-purplebear (1) (1).patt"></a-marker>
-      <a-nft
-        type="nft"
-        url="C:\laragon\www\arscan\purplebear (1).jpg"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5">
+<head>
+    <meta charset="utf-8">
+    <title>WebAR with NFT Marker and Sketchfab Model</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        Point your camera at the NFT marker image
+    </div>
 
-          <a-entity>
-            <a-box position="-100 10 0" src="C:\laragon\www\arscan\purplebear (1).jpg" rotation="" color="" shadow="" material="" geometry="" scale="50 5 50"></a-box>
-            <a-box position="10 100 0" src="C:\laragon\www\arscan\purplebear (1).jpg" rotation="" color="" shadow="" material="" geometry="" scale="50 5 50"></a-box>
-            <a-box position="100 10 0" src="C:\laragon\www\arscan\purplebear (1).jpg" rotation="" color="" shadow="" material="" geometry="" scale="50 5 50"></a-box>
-            <a-box position="-100 10 -150" src="C:\laragon\www\arscan\purplebear (1).jpg" rotation="" color="" shadow="" material="" geometry="" scale="50 5 50"></a-box>
-            <a-box position="10 100 -150" src="C:\laragon\www\arscan\purplebear (1).jpg" rotation="" color="" shadow="" material="" geometry="" scale="50 5 50"></a-box>
-            <a-box position="100 10 -150" src="C:\laragon\www\arscan\purplebear (1).jpg" rotation="" color="" shadow="" material="" geometry="" scale="50 5 50"></a-box>
-          </a-entity>
+    <a-scene 
+        vr-mode-ui="enabled: false"
+        embedded 
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+    >
+        <a-nft
+            type="nft"
+            url="assets/card"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance="0.01"
+            smoothThreshold="5"
+        >
+            <a-entity 
+                gltf-model="url(assets/snoopy.glb)"
+                scale="0.1 0.1 0.1"
+                position="0 0.5 0"
+                rotation="0 0 0"
+            ></a-entity>
+        </a-nft>
 
-      </a-nft>
-    <a-entity camera></a-entity>
-  </a-scene>
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
 </html>
